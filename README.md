@@ -1,7 +1,7 @@
 
 # Pcap Capture File Analysis Tool(v.2)
 
-### Python3.x
+### Now supports Python3.x
 
 ```sh
 [!]CONTACT[!]
