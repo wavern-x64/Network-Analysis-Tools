@@ -30,11 +30,11 @@ def Banner():
 	print ("`  `'`---'`---'`-'-'`---'`    `   `    `   '`   '`---^`---'`---|`---'``---'      `  `---'`---'`---'`---' \n")
 
 
-	print colors.GREEN + (" "*43+"[+Network Analysis Toolkit+]") + colors.END
-	print colors.RED   + (" "*47+"[Version v1.0(BETA)]") + colors.END
-	print colors.BLUE  + (" "*47+"[AbdulAziz Altuntas]") + colors.END
+	print (colors.GREEN + (" "*43+"[+Network Analysis Toolkit+]") + colors.END)
+	print (colors.RED   + (" "*47+"[Version v1.0(BETA)]") + colors.END)
+	print (colors.BLUE  + (" "*47+"[AbdulAziz Altuntas]") + colors.END)
 
-	print colors.BOLD + ("[!]CONTACT[!]\n| Email: a.azizaltuntas@gmail.com |\n| Github: github/azizaltuntas     |\n| Twitter: @esccopyright          |\n") + colors.END
+	print (colors.BOLD + ("[!]CONTACT[!]\n| Email: a.azizaltuntas@gmail.com |\n| Github: github/azizaltuntas     |\n| Twitter: @esccopyright          |\n") + colors.END)
 
 Banner()
 
@@ -57,44 +57,44 @@ def check():
 	reads = (os.popen("tshark -h")).read()
 	print ("[+] Check tshark tool...")
 
-	if 'WARNING' in reads:
-		print colors.BOLD + ("[+] Tshark found Lest Go !\n") + colors.END
+	if 'TShark' in reads:
+		print (colors.BOLD + ("[+] Tshark found Lest Go !\n") + colors.END)
 		configure()
 		pass
 
 	else:
-		print colors.RED + ("[-] Tshark Not Found !") + colors.END
-		print colors.RED + ("İnstalling Tshark..") + colors.END
+		print (colors.RED + ("[-] Tshark Not Found !") + colors.END)
+		print (colors.RED + ("İnstalling Tshark..") + colors.END)
 		print (os.system("apt-get -y install tshark"))
-		print colors.RED + ("[+]Configuration Please Wait..") + colors.END
+		print (colors.RED + ("[+]Configuration Please Wait..") + colors.END)
 
 
 
 check()
 
-print colors.GREEN + "+++++++++++++++++++++++++++++++++++++++" + colors.END
-print colors.BOLD + ("1 -PCAP FILE ANALYSIS") + colors.END
-print colors.RED + ("** This option is used for analyze the 'pcap' files. **\n") +colors.END
-print colors.BOLD + ("2 -REAL-TIME ANALYSIS(COMING SOON)") + colors.END
-print colors.RED + ("** This option is used for real-time network analysis. **") +colors.END
-print colors.GREEN + "+++++++++++++++++++++++++++++++++++++++\n" + colors.END
+print (colors.GREEN + "+++++++++++++++++++++++++++++++++++++++" + colors.END)
+print (colors.BOLD + ("1 -PCAP FILE ANALYSIS") + colors.END)
+print (colors.RED + ("** This option is used for analyze the 'pcap' files. **\n") +colors.END)
+print (colors.BOLD + ("2 -REAL-TIME ANALYSIS(COMING SOON)") + colors.END)
+print (colors.RED + ("** This option is used for real-time network analysis. **") +colors.END)
+print (colors.GREEN + "+++++++++++++++++++++++++++++++++++++++\n" + colors.END)
 
 
 def packet():
 
-		pcap = raw_input("Location Pcap File > ")
+		pcap = input("Location Pcap File > ")
 		if pcap == pcap:
 			control = (os.popen("file " '%s' %pcap)).read()
 			if 'capture file' in control:
 				print ("[+] Okey Capture File\n")
 				pass
 			else:
-				print colors.RED + ("File Don't Pcap\n Exit..") + colors.END
+				print (colors.RED + ("File Don't Pcap\n Exit..") + colors.END)
 				sys.exit()
 		while True:
 
-			print "\n"
-			print colors.BLUE + (" " * 25 + "|-OPERATIONS-|\n") + colors.END
+			print ("\n")
+			print (colors.BLUE + (" " * 25 + "|-OPERATIONS-|\n") + colors.END)
 			print(" 1-Top 10 Visited Sites" + " " * 13 + "2-Emails\n")
 			print(" 3-All Request Urls" + " " * 17 + "4-User-Agents List\n")
 			print(" 5-String Grep Mode" + " " * 17 + "6-Connection details\n")
@@ -103,17 +103,17 @@ def packet():
 			print("              11-Web Attack Detect")
 
 
-			pack = raw_input(colors.BLUE + "\nOperation Number > " + colors.END)
-			print "\n"
+			pack = input(colors.BLUE + "\nOperation Number > " + colors.END)
+			print ("\n")
 
 			if pack == "1":
 				top10 = os.popen("tshark -T fields -e http.host -r '%s' | sort | uniq -c | sort -nr" % pcap).read()
-				print colors.RED + ("Top 10 Visited Sites\n\nRequest | HOST") + colors.END
+				print (colors.RED + ("Top 10 Visited Sites\n\nRequest | HOST") + colors.END)
 				print (top10)
 
 			elif pack == "2":
-				print colors.RED + ("Get Emails\n") + colors.END
-				print colors.RED + ("[Warning!]There is a Possibility of Error(%80)\n") + colors.END
+				print (colors.RED + ("Get Emails\n") + colors.END)
+				print (colors.RED + ("[Warning!]There is a Possibility of Error(%80)\n") + colors.END)
 				email = os.popen("ngrep -q -I '%s'" %pcap).read()
 				reg = re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b", email)
 
@@ -137,7 +137,7 @@ def packet():
 					print ("Converter 'tcpdump' format.Please Wait..\n")
 					print ("--------------------------------")
 					print ("Example : newfile.pcap")
-					name = raw_input("Please New File Name : ")
+					name = input("Please New File Name : ")
 					print ("--------------------------------\n")
 					tmp = tempfile.NamedTemporaryFile(delete=False)
 					time.sleep(2)
@@ -174,24 +174,24 @@ def packet():
 							if isinstance(ip.data, pc.tcp.TCP):  # İnstance Örnekleme Değişken Atama.
 
 								print ("------------------------------------------------------------------------")
-								print "Time           : ", str(datetime.datetime.utcfromtimestamp(timestamp))
-								print "HTPP Adress    : ", http.headers['host']
-								print "HTTP URI       : ", http.uri
-								print 'Source         :  %s\nDestination    :  %s   NOTE :-> (Length=%d - TTL Value=%d)' % (
-									ips(ip.src), ips(ip.dst), ip.len, ip.ttl)
-								print "User-Agent     : ", http.headers['user-agent']
-								print "Modified Since : ", http.headers['if-modified-since']
+								print ("Time           : ", str(datetime.datetime.utcfromtimestamp(timestamp)))
+								print ("HTPP Adress    : ", http.headers['host'])
+								print ("HTTP URI       : ", http.uri)
+								print ('Source         :  %s\nDestination    :  %s   NOTE :-> (Length=%d - TTL Value=%d)' % (
+									ips(ip.src), ips(ip.dst), ip.len, ip.ttl))
+								print ("User-Agent     : ", http.headers['user-agent'])
+								print ("Modified Since : ", http.headers['if-modified-since'])
 
 					except:
 						pass
 
-				print "\n"
-				print colors.RED+ "Alternative Output"
+				print ("\n")
+				print (colors.RED+ "Alternative Output")
 
 				request = os.popen("tshark -T fields -e http.host -e http.request.uri -Y 'http.request.method == \"GET\"' -r '%s' | sort | uniq" %pcap).read()
 
 				print ("----------------------------------------------------------")
-				print colors.RED + ("    Host             |               Request URI\n") + colors.END
+				print (colors.RED + ("    Host             |               Request URI\n") + colors.END)
 				print ("----------------------------------------------------------")
 				print (request)
 				print ("----------------------------------------------------------")
@@ -200,15 +200,15 @@ def packet():
 			elif pack == "4":
 				userA = os.popen(
 					"tshark -Y 'http contains \"User-Agent:\"' -T fields -e http.user_agent -r '%s' | sort | uniq -c | sort -nr" % pcap).read()
-				print colors.RED + ("How Many | User-Agent List\n") + colors.END
+				print (colors.RED + ("How Many | User-Agent List\n") + colors.END)
 				print (userA)
 
 
 			elif pack == "5":
 
-				stingr = raw_input(colors.YELLOW + "Search String : " + colors.END)
+				stingr = input(colors.YELLOW + "Search String : " + colors.END)
 
-				print colors.RED + ("Results\n") + colors.END
+				print (colors.RED + ("Results\n") + colors.END)
 				response = subprocess.call("ngrep -q -I '%s' | grep -i '%s' | sort | uniq -c" % (pcap, stingr),
 											shell=True)
 
@@ -219,7 +219,7 @@ def packet():
 				print ("c- Conversation Details(TCP,IP,UDP)")
 				print ("d- All Conversation Details\n")
 
-				itachi = raw_input("\nWhich ? > ")
+				itachi = input("\nWhich ? > ")
 
 				if itachi == "a":
 					io = subprocess.call("tshark -r '%s' -qz io,stat,10,tcp,udp,icmp,ip,smtp,smb,arp,browser" %pcap , shell=True)
@@ -229,21 +229,21 @@ def packet():
 
 				elif itachi == "c": # Protocol if : else control Error..
 
-					print colors.RED + ("TCP Conversation\n") + colors.END
+					print (colors.RED + ("TCP Conversation\n") + colors.END)
 
 					tcpt = subprocess.call("tshark -r '%s' -qz conv,tcp" % (pcap), shell=True)
 
-					print colors.RED + ("IP Conversation\n") + colors.END
+					print (colors.RED + ("IP Conversation\n") + colors.END)
 
 					ipt = subprocess.call("tshark -r '%s' -qz conv,ip" % (pcap), shell=True)
 
-					print colors.RED + ("UDP Conversation\n") + colors.END
+					print (colors.RED + ("UDP Conversation\n") + colors.END)
 
 					udpt = subprocess.call("tshark -r '%s' -qz conv,udp" % (pcap), shell=True)
 
 				elif itachi == "d":
 
-					print colors.RED + ("All Conversation Details\n") + colors.END
+					print (colors.RED + ("All Conversation Details\n") + colors.END)
 					conver = pyshark.FileCapture('%s' %pcap)
 
 					def conversat(converpack):
@@ -263,13 +263,13 @@ def packet():
 
 			elif pack == "7":
 
-				print colors.RED + "How Many | Port Used" + colors.END
+				print (colors.RED + "How Many | Port Used" + colors.END)
 
 				port = subprocess.call("tcpdump -nn -r '%s' -p 'tcp or udp' | awk -F' ' '{print $5}' | awk -F'.' '{print $5}' | sed 's/:/ /g'  | sort | uniq -c | sort -n" %pcap, shell=True)
 
 			elif pack == "8":
 
-				print colors.RED + "ALL IP List\n" + colors.END
+				print (colors.RED + "ALL IP List\n" + colors.END)
 
 				ipls = os.popen("tcpdump -nn -r '%s' -p 'tcp or udp'" %pcap).read()
 				ipreg = re.findall(r"\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b", ipls)
@@ -280,9 +280,9 @@ def packet():
 				for sauron in uniq2:
 					print  (colors.YELLOW+"[+]"+colors.END+colors.BLUE +sauron+colors.END )
 
-				print "\n"
+				print ("\n")
 
-				print colors.RED + "[+BONUS]Request IP List\n" + colors.END
+				print (colors.RED + "[+BONUS]Request IP List\n" + colors.END)
 
 				reqipl = os.popen("tcpdump -nn -r '%s' -p 'tcp or udp' | awk -F' ' '{print $3}' | awk -F'.' '{print $1\".\"$2\".\"$3\".\"$4}' | sort | uniq | sort -n" %pcap).read()
 
@@ -292,10 +292,10 @@ def packet():
 
 			elif pack == "9":
 
-				print colors.YELLOW + "Manuel Packet Filter" + colors.END
-				print colors.BLUE + "Filter Referance :\nhttps://www.wireshark.org/docs/dfref/\nhttps://wiki.wireshark.org/DisplayFilters\n" +colors.END
+				print (colors.YELLOW + "Manuel Packet Filter" + colors.END)
+				print (colors.BLUE + "Filter Referance :\nhttps://www.wireshark.org/docs/dfref/\nhttps://wiki.wireshark.org/DisplayFilters\n" +colors.END)
 
-				filt = raw_input("Filter > ")
+				filt = input("Filter > ")
 
 				try:
 					filtr = pyshark.FileCapture(pcap, display_filter='%s' %filt)
@@ -307,7 +307,7 @@ def packet():
 
 			elif pack == "10":
 
-				print colors.RED + "SMTP Message Info\n" + colors.END
+				print (colors.RED + "SMTP Message Info\n" + colors.END)
 
 				list_key = ['Date:', 'To:', 'Subject:', 'From:', 'X-Mailer', 'Pass','User']
 				app_list = []
@@ -319,7 +319,7 @@ def packet():
 							app_list.append(s)
 
 				for list_ in app_list:
-					print colors.BLUE + (list_) + colors.END
+					print (colors.BLUE + (list_) + colors.END)
 
 			elif pack == "11":
 
@@ -357,7 +357,7 @@ def packet():
 							for vuln in sql:
 								if vuln in url:
 									try:
-										print colors.RED + "SQLİ Attack URL: " + colors.END, url
+										print (colors.RED + "SQLİ Attack URL: " + colors.END, url)
 
 									except:
 										AttributeError
@@ -365,14 +365,14 @@ def packet():
 							for vuln2 in xss:
 								if vuln2 in url:
 									try:
-										print colors.BLUE + "XSS Attack URL: " + colors.END, url
+										print (colors.BLUE + "XSS Attack URL: " + colors.END, url)
 									except:
 										AttributeError
 
 							for vuln3 in lfi:
 								if vuln3 in url:
 									try:
-										print colors.YELLOW + "LFİ Attack URL: " + colors.END, url
+										print (colors.YELLOW + "LFİ Attack URL: " + colors.END, url)
 									except:
 										AttributeError
 
@@ -380,14 +380,13 @@ def packet():
 						AttributeError
 
 
-try:
-	if __name__ == '__main__':
-		select = raw_input("Select> ")
-
-		if select == "1":
-			packet()
-		if select == "2":
-			print colors.RED+("COMING SOON")+colors.END
-except:
-	KeyboardInterrupt
-	print ("Exit Tool..")
+#try:
+if __name__ == '__main__':
+	select = input("Select> ")
+	if select == "1":
+		packet()
+	if select == "2":
+		print (colors.RED+("COMING SOON")+colors.END)
+#except:
+#	KeyboardInterrupt
+#	print ("Exit Tool..")
