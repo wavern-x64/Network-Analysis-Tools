@@ -1,8 +1,7 @@
 
 # Pcap Capture File Analysis Tool(v.2)
 
-https://img.shirlds.io/badge/python-3.x-blue.svg
-[![Python 3.x](https://img.shirlds.io/badge/python-3.x-blue.svg)](https://www.python.org/downloads/)
+### Python3.x
 
 ```sh
 [!]CONTACT[!]
